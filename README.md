@@ -1,3 +1,4 @@
+
 # W3Schools Database in Docker
 
 Forked from https://github.com/AndrejPHP/w3schools-database for academic purposes.
@@ -67,4 +68,3 @@ and inserts the respective data.
 ### 14.09.2024
 The project setup was quite difficult, as I am missing some linux and docker experience.
 After some try and errors and support from ChatGPT I made it finally work
-

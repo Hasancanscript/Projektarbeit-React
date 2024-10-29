@@ -1,23 +1,185 @@
+/* Importiere Tailwind CSS */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.welcome-container {
-    display: flex;
-    flex-direction: column;
+/* Eigene Anpassungen für deine Stile */
+
+/* Navigationsleiste */
+.navigation {
+  @apply bg-green-500 p-4 text-white flex items-center justify-between;
 }
 
-.product-container {
-    display: flex;
-    gap: 32px;
-    padding-left: 24px;
-    padding-right: 32px;
+.navigation-list {
+  @apply flex space-x-4 list-none p-0 m-0 items-center;
 }
 
-.main-container{
-    display: flex;
-    padding-right: 32px;
+.navigation-list li {
+  margin-right: 20px;
 }
 
-@media (max-width: 850px) {
-    .product-container {
-        flex-direction: column;
-    }
+.navigation-link {
+  @apply text-white text-lg no-underline hover:text-gray-300 transition-colors duration-300;
+}
+
+.navigation-link i {
+  margin-right: 8px; /* Abstand zwischen Symbol und Text */
+}
+
+/* Käse-Logo */
+.cheese-logo {
+  width: 40px;
+  height: 40px;
+  margin-right: 16px;
+  animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Galerie-Stile */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Feste 3 Spalten */
+  gap: 20px; /* Abstand zwischen den Karten */
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.product-item {
+  width: 100%; /* Füllt den verfügbaren Platz */
+  max-width: 250px; /* Maximale Breite */
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s;
+  text-align: center;
+}
+
+.product-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-image {
+  width: 200px; /* Größeres Bild */
+  height: 200px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.product-info {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.product-name {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.product-price {
+  color: #16a34a;
+  font-size: 16px;
+}
+
+/* Produktintro-Stil */
+.product-intro {
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Modal-Stile */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.login-form label {
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.submit-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.submit-button:hover {
+  background-color: #45a049;
+}
+
+.close-button {
+  margin-top: 10px;
+  background-color: #ccc;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  background-color: #aaa;
+}
+
+/* Stil für den "Anmelden"-Button in der Navigation */
+.login-button {
+  background: #f3f4f6;
+  color: #111827;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-button:hover {
+  background: #e5e7eb;
 }

@@ -14,13 +14,13 @@ function Productlist() {
         const sortedData = sortProducts(data);
         setProducts(sortedData);
       })
-      .catch(error => console.error('Error fetching customers:', error));
+      .catch(error => console.error('Error fetching products:', error));
   }, []);
 
-    // Function to sort products by ProductName
-    const sortProducts = (products) => {
-      return products.sort((a, b) => a.ProductName.localeCompare(b.ProductName));
-    };
+  // Function to sort products by ProductName
+  const sortProducts = (products) => {
+    return products.sort((a, b) => a.ProductName.localeCompare(b.ProductName));
+  };
 
   // Handle input change for editing product
   const handleInputChange = (productId, field, value) => {
@@ -49,8 +49,7 @@ function Productlist() {
             product.ProductID === productId ? { ...product, ...updatedProduct } : product
           ));
           setEditableProductId(null); // Exit edit mode
-        }
-        else {
+        } else {
           alert('Failed to update product');
         }
       });
@@ -64,8 +63,7 @@ function Productlist() {
       .then(response => {
         if (response.ok) {
           setProducts(products.filter(product => product.ProductID !== productId));
-        }
-        else {
+        } else {
           alert('Failed to delete product');
         }
       });
@@ -74,7 +72,10 @@ function Productlist() {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Produktliste</h1>
-      
+      <p className="product-intro">
+        Entdecken Sie unsere sorgfältig ausgewählte Produktpalette, die höchste Qualität und besten Genuss garantiert.
+      </p>
+
       <button 
         className="btn btn-primary px-4 py-2 mb-4"
         onClick={() => setEditableProductId('new')}
@@ -151,7 +152,7 @@ function Productlist() {
           </tr>
         </thead>
         <tbody>
-        {products.map(product => (
+          {products.map(product => (
             <tr key={product.ProductID} className="hover:bg-gray-100">
               <td className="py-2 px-4 border-b">
                 {editableProductId === product.ProductID ? (

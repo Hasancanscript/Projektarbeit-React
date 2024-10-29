@@ -1,28 +1,100 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './index.css';
+import Gallery from './components/Gallery';
+import ContactForm from './components/ContactForm';
 
 const api = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
-function ProductCatalog() {
-  const [categories, setCategories] = useState([]);
-  const [editableCategoryId, setEditableCategoryId] = useState(null); // Track which category is being edited
-  const [editedCategory, setEditedCategory] = useState({}); // Track changes to the edited category
+function App() {
+  return (
+    <Router>
+      {/* Navigationsleiste */}
+      <nav className="navigation">
+        <ul className="navigation-list">
+          <li><Link to="/" className="navigation-link">Home</Link></li>
+          <li><Link to="/products" className="navigation-link">Produkte</Link></li>
+          <li><Link to="/contact" className="navigation-link">Kontaktformular</Link></li>
+          <li><Link to="/team" className="navigation-link">Team</Link></li>
+          <li><Link to="/about" className="navigation-link">Über uns</Link></li>
+        </ul>
+      </nav>
 
-  useEffect(() => {
+      {/* Routen für die Seiten */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+    </Router>
+  );
+}
+
+// Home-Seite mit Kategorie-Verwaltung
+function Home() {
+  return (
+    <section className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Kategorie-Verwaltung</h1>
+      <CategoryList />
+    </section>
+  );
+}
+
+// Produkte-Seite mit Galerie
+function Products() {
+  return (
+    <section className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Produkte</h1>
+      <p>Hier findest du eine Auswahl unserer Produkte.</p>
+      <Gallery /> {/* Galerie-Komponente hier hinzufügen */}
+    </section>
+  );
+}
+
+// Kontaktformular-Seite mit Umschaltfunktion
+function Contact() {
+  return (
+    <section className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Kontaktformular</h1>
+      <ContactForm /> {/* Zeigt das Kontaktformular an */}
+    </section>
+  );
+}
+
+// Team-Seite
+function Team() {
+  return (
+    <section className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Team</h1>
+      <p>Lernen Sie unser Team kennen.</p>
+    </section>
+  );
+}
+
+// Über-uns-Seite
+function About() {
+  return (
+    <section className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Über uns</h1>
+      <p>Hier erfahren Sie mehr über uns.</p>
+    </section>
+  );
+}
+
+// Kategorie-Verwaltungskomponente
+function CategoryList() {
+  const [categories, setCategories] = React.useState([]);
+  const [editableCategoryId, setEditableCategoryId] = React.useState(null);
+  const [editedCategory, setEditedCategory] = React.useState({});
+
+  React.useEffect(() => {
     fetch(`${api}/categories`)
       .then(response => response.json())
-      .then(data => {
-        const sortedData = sortCategories(data);
-        setCategories(sortedData);
-      })
-      .catch(error => console.error('Error fetching customers:', error));
+      .then(data => setCategories(data));
   }, []);
 
-  // Function to sort categories by CategoryName
-  const sortCategories = (categories) => {
-    return categories.sort((a, b) => a.CategoryName.localeCompare(b.CategoryName));
-  };
-
-  // Handle input change for editing category
   const handleInputChange = (categoryId, field, value) => {
     setEditedCategory(prev => ({
       ...prev,
@@ -33,7 +105,6 @@ function ProductCatalog() {
     }));
   };
 
-  // Handle patch request for category update
   const handleSave = (categoryId) => {
     const updatedCategory = editedCategory[categoryId];
     fetch(`${api}/categories/${categoryId}`, {
@@ -48,15 +119,13 @@ function ProductCatalog() {
           setCategories(categories.map(category =>
             category.CategoryID === categoryId ? { ...category, ...updatedCategory } : category
           ));
-          setEditableCategoryId(null); // Exit edit mode
-        }
-        else {
+          setEditableCategoryId(null);
+        } else {
           alert('Failed to update category');
         }
       });
   };
 
-  // Handle delete request
   const handleDelete = (categoryId) => {
     fetch(`${api}/categories/${categoryId}`, {
       method: 'DELETE',
@@ -64,8 +133,7 @@ function ProductCatalog() {
       .then(response => {
         if (response.ok) {
           setCategories(categories.filter(category => category.CategoryID !== categoryId));
-        }
-        else {
+        } else {
           alert('Failed to delete category');
         }
       });
@@ -73,33 +141,32 @@ function ProductCatalog() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Kategorien</h1>
-      
+      <h2 className="text-2xl font-bold mb-4">Categories</h2>
       <button 
-        className="btn btn-primary px-4 py-2 mb-4"
+        className="bg-blue-500 text-white px-4 py-2 rounded mb-4"
         onClick={() => setEditableCategoryId('new')}
       >
-        Neue Kategorie hinzufügen
+        Add New Category
       </button>
       {editableCategoryId === 'new' && (
         <div className="mb-4 p-4 border rounded">
           <input
             className="border p-2 mb-2 w-full"
             type="text"
-            placeholder="Name der Kategorie"
+            placeholder="Category Name"
             value={editedCategory['new']?.CategoryName || ''}
             onChange={(e) => handleInputChange('new', 'CategoryName', e.target.value)}
           />
           <input
             className="border p-2 mb-2 w-full"
             type="text"
-            placeholder="Beschreibung"
+            placeholder="Description"
             value={editedCategory['new']?.Description || ''}
             onChange={(e) => handleInputChange('new', 'Description', e.target.value)}
           />
           <div className="flex space-x-2">
             <button
-              className="btn btn-secondary px-4 py-2 mb-4"
+              className="bg-green-500 text-white px-4 py-2 rounded"
               onClick={() => {
                 const newCategory = editedCategory['new'];
                 fetch(`${api}/categories`, {
@@ -117,14 +184,13 @@ function ProductCatalog() {
                       const { new: _, ...rest } = prev;
                       return rest;
                     });
-                    window.location.reload(); // Refresh the page
                   });
               }}
             >
               Save
             </button>
             <button 
-              className="btn btn-secondary px-4 py-2 mb-4 mx-1"
+              className="bg-red-500 text-white px-4 py-2 rounded"
               onClick={() => setEditableCategoryId(null)}
             >
               Cancel
@@ -136,9 +202,9 @@ function ProductCatalog() {
       <table className="min-w-full bg-white border">
         <thead>
           <tr>
-            <th className="py-2 px-4 border-b">Name der Kategorie</th>
-            <th className="py-2 px-4 border-b">Beschreibung</th>
-            <th className="py-2 px-4 border-b">Aktionen</th>
+            <th className="py-2 px-4 border-b">Category Name</th>
+            <th className="py-2 px-4 border-b">Description</th>
+            <th className="py-2 px-4 border-b">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -176,13 +242,13 @@ function ProductCatalog() {
                 {editableCategoryId === category.CategoryID ? (
                   <div className="flex space-x-2">
                     <button 
-                      className="btn btn-secondary px-4 py-2 mb-4 mx-1"
+                      className="bg-green-500 text-white px-4 py-2 rounded"
                       onClick={() => handleSave(category.CategoryID)}
                     >
                       Save
                     </button>
                     <button 
-                      className="btn btn-secondary px-4 py-2 mb-4 mx-1"
+                      className="bg-red-500 text-white px-4 py-2 rounded"
                       onClick={() => setEditableCategoryId(null)}
                     >
                       Cancel
@@ -191,13 +257,13 @@ function ProductCatalog() {
                 ) : (
                   <div className="flex space-x-2">
                     <button 
-                      className="btn btn-success px-4 py-2 mb-4 mx-1"
+                      className="bg-yellow-500 text-white px-4 py-2 rounded"
                       onClick={() => setEditableCategoryId(category.CategoryID)}
                     >
                       Edit
                     </button>
                     <button 
-                      className="btn btn-danger px-4 py-2 mb-4 mx-1"
+                      className="bg-red-500 text-white px-4 py-2 rounded"
                       onClick={() => handleDelete(category.CategoryID)}
                     >
                       Delete
@@ -213,4 +279,4 @@ function ProductCatalog() {
   );
 }
 
-export default ProductCatalog;
+export default App;
