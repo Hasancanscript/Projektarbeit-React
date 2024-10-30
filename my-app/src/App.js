@@ -5,40 +5,48 @@ import Productlist from './components/products';
 import CheeseProducts from './components/CheeseProducts';
 import ContactForm from './components/ContactForm';
 import Team from './components/Team';
-import UeberUns from './components/ueberuns';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
 
   const handleOpenModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
 
+  const addToCart = (product) => {
+    const priceAsNumber = parseFloat(product.price.replace('CHF', '').replace(',', '.').trim());
+    setCartItems([...cartItems, { ...product, price: priceAsNumber }]);
+  };
+
   return (
     <Router>
-      {/* Navigationsleiste */}
-      <nav className="navigation flex justify-between items-center">
+      <nav className="navigation flex justify-between items-center" style={{ backgroundColor: '#1C729C' }}>
         <ul className="navigation-list flex space-x-4">
           <li>
-            <Link to="/" className="navigation-link">
+            <Link to="/" className="navigation-link text-white">
               <i className="fas fa-home"></i> Home
             </Link>
           </li>
-          <li><Link to="/products" className="navigation-link">Produkte</Link></li>
-          <li><Link to="/cheese" className="navigation-link">Käseprodukte</Link></li>
-          <li><Link to="/team" className="navigation-link">Team</Link></li>
-          <li><Link to="/contact" className="navigation-link">Kontaktformular</Link></li>
-          <li><Link to="/map" className="navigation-link">Kontakt</Link></li>
-          <li><Link to="/about" className="navigation-link">Über uns</Link></li>
+          <li><Link to="/categories" className="navigation-link text-white">Kategorien</Link></li>
+          <li><Link to="/products" className="navigation-link text-white">Produkte</Link></li>
+          <li><Link to="/cheese" className="navigation-link text-white">Käseprodukte</Link></li>
+          <li><Link to="/team" className="navigation-link text-white">Team</Link></li>
+          <li><Link to="/contact" className="navigation-link text-white">Kontaktformular</Link></li>
+          <li><Link to="/map" className="navigation-link text-white">Kontakt</Link></li>
+          <li><Link to="/about" className="navigation-link text-white">Über mich</Link></li>
         </ul>
 
-        {/* Anmelden-Button und Käse-Logo auf der rechten Seite */}
         <div className="flex items-center space-x-4">
-          <button onClick={handleOpenModal} className="login-button">Anmelden</button>
+          <button onClick={handleOpenModal} className="nav-button">
+            <i className="fas fa-user"></i> Anmelden
+          </button>
+          <Link to="/cart" className="nav-button">
+            <i className="fas fa-shopping-cart"></i> Warenkorb ({cartItems.length})
+          </Link>
           <img src="/images/cheese-logo.png" alt="Käse Logo" className="cheese-logo" />
         </div>
       </nav>
 
-      {/* Modal für das Anmeldeformular */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -59,25 +67,103 @@ function App() {
         </div>
       )}
 
-      {/* Routen für die Seiten */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/products" element={<Productlist />} />
-        <Route path="/cheese" element={<CheeseProducts />} />
+        <Route path="/cheese" element={<CheeseProducts addToCart={addToCart} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/team" element={<Team />} />
-        <Route path="/about" element={<UeberUns />} />
+        <Route path="/about" element={<UeberMich />} />
         <Route path="/map" element={<Map />} />
+        <Route path="/cart" element={<Cart cartItems={cartItems} />} />
       </Routes>
     </Router>
   );
 }
 
-// Home-Seite mit Kategorie-Verwaltung
+// Gemeinsame Header-Stil Funktion
+const PageHeader = ({ title }) => (
+  <h1 className="text-4xl font-extrabold mb-4 text-yellow-600 text-center">{title}</h1>
+);
+
+// Home-Seite mit grösserem Bild und stilisierter Überschrift
 function Home() {
   return (
+    <section className="container mx-auto p-4 text-center">
+      <PageHeader title="Willkommen auf unserer Webseite" />
+      <p className="mb-4 text-lg text-gray-700">
+        Entdecken Sie unsere grosse Auswahl an Produkten und lernen Sie unser engagiertes Team kennen. 
+        Wir freuen uns, Ihnen die besten Angebote und eine hervorragende Qualität zu bieten.
+      </p>
+      <img 
+        src="/images/welcome-image.png" 
+        alt="Willkommensbild" 
+        className="mx-auto rounded-lg shadow-2xl"
+        style={{ width: '500px', height: '500px', objectFit: 'cover' }}
+      />
+    </section>
+  );
+}
+
+// Über mich-Seite
+function UeberMich() {
+  return (
+    <section className="container mx-auto p-4 text-center">
+      <PageHeader title="Willkommen auf meiner Seite!" />
+      <img 
+        src="/images/profile.jpg" 
+        alt="Profilbild"
+        className="rounded-full mx-auto mb-4"
+        style={{ width: '200px', height: '200px', objectFit: 'cover' }}
+      />
+      <p className="mb-4 text-lg text-gray-700">
+        Ich studiere momentan als Wirtschaftsinformatiker bei Feusi und bin auch der Gründer dieser Webseite. 
+        Neben meinem Studium arbeite ich bei Swisscom (Schweiz) AG im 2nd Level Bereich. Diese Erfahrung hilft mir, meine IT-Kenntnisse 
+        kontinuierlich weiterzuentwickeln und praktische Lösungen für die heutigen technischen Herausforderungen zu finden.
+      </p>
+      <p className="text-lg text-gray-700">
+        In meiner Freizeit interessiere ich mich für innovative Technologien und deren Anwendung in der Geschäftswelt. 
+        Ich freue mich, meine Kenntnisse und Fähigkeiten mit Ihnen zu teilen und hoffe, dass meine Webseite Ihnen nützliche 
+        Einblicke und Informationen bietet. Zögern Sie nicht, mich zu kontaktieren, wenn Sie Fragen haben oder mehr erfahren möchten!
+      </p>
+    </section>
+  );
+}
+
+// Kontaktseite mit Google Maps
+function Map() {
+  return (
     <section className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Kategorie-Verwaltung</h1>
+      <PageHeader title="Unsere Adresse" />
+      <div className="map-container" style={{ border: '1px solid #ddd', overflow: 'hidden', borderRadius: '8px' }}>
+        <iframe
+          width="100%"
+          height="450"
+          frameBorder="0"
+          scrolling="no"
+          marginHeight="0"
+          marginWidth="0"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2651.913490841002!2d7.4641198!3d46.9664481!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478e39fe7e4c241b%3A0x85161c9c1c672184!2sFeusi%20Bildungszentrum%20AG!5e0!3m2!1sde!2sch!4v1698416552806!5m2!1sde!2sch"
+          allowFullScreen
+          title="Google Maps zur Adresse"
+        ></iframe>
+        <p>
+          <a href="https://www.google.ch/maps/place/Feusi+Bildungszentrum+AG/@46.9664481,7.4641198,312m/data=!3m1!1e3!4m6!3m5!1s0x478e39fe7e4c241b:0x85161c9c1c672184!8m2!3d46.966543!4d7.465476!16s%2Fg%2F11f8p332v4?hl=de&entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D"
+            target="_blank" rel="noopener noreferrer">
+            Größere Karte anzeigen
+          </a>
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// Kategorie-Seite
+function Categories() {
+  return (
+    <section className="container mx-auto p-4">
+      <PageHeader title="Kategorien" />
       <CategoryList />
     </section>
   );
@@ -87,39 +173,94 @@ function Home() {
 function Contact() {
   return (
     <section className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Kontaktformular</h1>
+      <PageHeader title="Kontaktformular" />
       <ContactForm />
     </section>
   );
 }
 
-// OpenStreetMap-Karte eingebettet in einem iframe
-function Map() {
+// Warenkorb-Seite
+function Cart({ cartItems }) {
+  const [itemCounts, setItemCounts] = useState(cartItems.map(() => 1));
+
+  const handleIncrease = (index) => {
+    setItemCounts((counts) =>
+      counts.map((count, i) => (i === index ? count + 1 : count))
+    );
+  };
+
+  const handleDecrease = (index) => {
+    setItemCounts((counts) =>
+      counts.map((count, i) => (i === index && count > 1 ? count - 1 : count))
+    );
+  };
+
+  const totalPrice = cartItems.reduce(
+    (total, item, index) => total + (item.price || 0) * itemCounts[index],
+    0
+  );
+
   return (
     <section className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Unsere Adresse</h1>
-      <div className="map-container" style={{ border: '1px solid #ddd', overflow: 'hidden', borderRadius: '8px' }}>
-        <iframe
-          width="100%"
-          height="450"
-          frameBorder="0"
-          scrolling="no"
-          marginHeight="0"
-          marginWidth="0"
-          src="https://www.openstreetmap.org/export/embed.html?bbox=7.4603%2C46.9477%2C7.4623%2C46.9487&layer=mapnik&marker=46.9482%2C7.4613"
-          title="OpenStreetMap zur Adresse Max-Daetwyler-Platz 1, 3014 Bern"
-        ></iframe>
-        <p>
-          <a href="https://www.openstreetmap.org/?mlat=46.9482&mlon=7.4613#map=17/46.9482/7.4613" target="_blank" rel="noopener noreferrer">
-            Größere Karte anzeigen
-          </a>
-        </p>
-      </div>
+      <PageHeader title="Ihr Warenkorb" />
+      {cartItems.length === 0 ? (
+        <p className="text-lg text-gray-700">Ihr Warenkorb ist leer.</p>
+      ) : (
+        <div>
+          {cartItems.map((item, index) => (
+            <div
+              key={index}
+              className="flex justify-between items-center border-b py-4"
+            >
+              <div className="flex items-center space-x-4">
+                <img
+                  src={item.src || '/images/placeholder.png'}
+                  alt={item.name || 'Produktbild'}
+                  style={{ width: '50px', height: '50px' }}
+                />
+                <div>
+                  <h3 className="text-lg font-bold">{item.name || 'Produktname'}</h3>
+                  <p className="text-sm text-gray-600">Preis: CHF {item.price.toFixed(2)}</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <button
+                  onClick={() => handleDecrease(index)}
+                  className="px-2 py-1 border"
+                >
+                  -
+                </button>
+                <span>{itemCounts[index]}</span>
+                <button
+                  onClick={() => handleIncrease(index)}
+                  className="px-2 py-1 border"
+                >
+                  +
+                </button>
+              </div>
+              <p className="text-lg font-bold">
+                {(item.price * itemCounts[index]).toFixed(2)} CHF
+              </p>
+            </div>
+          ))}
+          <div className="mt-4 p-4 bg-gray-100 rounded-lg">
+            <p className="text-lg font-bold">Gesamtpreis: {totalPrice.toFixed(2)} CHF</p>
+          </div>
+          <div className="flex justify-between items-center mt-4">
+            <button className="bg-red-500 text-white px-4 py-2 rounded">
+              Warenkorb leeren
+            </button>
+            <button className="bg-blue-500 text-white px-4 py-2 rounded">
+              Zur Bestellung
+            </button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
 
-// Kategorie-Verwaltungskomponente (verbleibender Code unverändert)
+// Kategorie-Verwaltungskomponente
 function CategoryList() {
   const [categories, setCategories] = React.useState([]);
   const [editableCategoryId, setEditableCategoryId] = React.useState(null);

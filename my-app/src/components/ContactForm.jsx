@@ -1,102 +1,132 @@
 import React, { useState, useEffect } from 'react';
 
 function ContactForm() {
-  const [isFormVisible, setIsFormVisible] = useState(false);
-  const [time, setTime] = useState(new Date().toLocaleTimeString());
+  const [isFormVisible, setIsFormVisible] = useState(true); // Formular standardmäßig sichtbar
+  const [timeLeft, setTimeLeft] = useState(600); // 10 Minuten in Sekunden
 
   useEffect(() => {
+    if (!isFormVisible) return;
+
+    if (timeLeft <= 0) {
+      // Formular zurücksetzen, wenn die Zeit abgelaufen ist
+      setIsFormVisible(false);
+      setTimeLeft(600); // Timer auf 10 Minuten zurücksetzen
+      alert("Die Zeit ist abgelaufen. Bitte geben Sie das Formular erneut ein.");
+      return;
+    }
+
     const timer = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
+      setTimeLeft(timeLeft - 1);
     }, 1000);
+
     return () => clearInterval(timer);
-  }, []);
+  }, [timeLeft, isFormVisible]);
 
   const toggleForm = () => {
     setIsFormVisible(!isFormVisible);
+    if (!isFormVisible) setTimeLeft(600); // Timer neu starten, wenn das Formular geöffnet wird
+  };
+
+  const formatTime = (seconds) => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
   };
 
   return (
     <section className="contact-container">
-      <h1 className="contact-title">Kontaktformular</h1>
-      <p>Wenn Sie ein Anliegen oder eine Frage haben, sind wir gerne für Sie da.</p>
-      <button onClick={toggleForm} className="toggle-button">
+      <p className="mb-6">Wenn Sie ein Anliegen oder eine Frage haben, sind wir gerne für Sie da.</p>
+      <button onClick={toggleForm} className="toggle-button mb-6">
         {isFormVisible ? "Formular schliessen" : "Kontaktformular anzeigen"}
       </button>
 
       {isFormVisible && (
-        <form className="contact-form">
-          <div className="input-group timer-group">
-            <label className="timer-label">Timer:</label>
-            <span className="timer">{time}</span>
+        <form className="contact-form space-y-6">
+          <div className="input-group timer-group mb-6">
+            <label className="timer-label">Zeit verbleibend:</label>
+            <span className="timer timer-space">{formatTime(timeLeft)}</span> {/* Abstandsklasse hinzugefügt */}
           </div>
 
           <div className="input-group">
-            <label>Frage / Kommentar</label>
-            <textarea placeholder="Ihre Nachricht" rows="4" maxLength="2000"></textarea>
+            <label className="form-label">Frage / Kommentar</label>
+            <textarea className="form-input" placeholder="Ihre Nachricht" rows="4" maxLength="2000"></textarea>
             <small className="char-limit">Anzahl verfügbarer Zeichen: 2000</small>
           </div>
 
-          <div className="input-group checkbox-group">
-            <input type="checkbox" id="contact_me" />
+          <div className="input-group checkbox-group mb-6">
+            <input type="checkbox" id="contact_me" className="form-checkbox" />
             <label htmlFor="contact_me" className="checkbox-label">
               Ich möchte, dass Sie mich kontaktieren
             </label>
             <small className="checkbox-description">
-              Falls Sie kontaktiert werden möchten, müssen Sie eine E-Mail oder Telefonnummer angeben.
+              Falls Sie kontaktiert werden möchten, geben Sie bitte eine E-Mail oder Telefonnummer an.
             </small>
           </div>
 
-          <div className="input-group">
-            <label>Anrede</label>
+          <fieldset className="fieldset">
+            <legend className="legend">Anrede</legend>
             <div className="radio-group">
-              <input type="radio" id="female" name="salutation" value="Frau" />
-              <label htmlFor="female">Frau</label>
-              <input type="radio" id="male" name="salutation" value="Herr" />
-              <label htmlFor="male">Herr</label>
-              <input type="radio" id="none" name="salutation" value="Keine" />
-              <label htmlFor="none">Keine</label>
+              <label>
+                <input type="radio" id="female" name="salutation" value="Frau" className="form-radio" />
+                Frau
+              </label>
+              <label>
+                <input type="radio" id="male" name="salutation" value="Herr" className="form-radio" />
+                Herr
+              </label>
+              <label>
+                <input type="radio" id="none" name="salutation" value="Keine" className="form-radio" />
+                Keine
+              </label>
+            </div>
+          </fieldset>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="input-group">
+              <label className="form-label">Vorname</label>
+              <input type="text" name="first_name" className="form-input" />
+            </div>
+            <div className="input-group">
+              <label className="form-label">Nachname</label>
+              <input type="text" name="last_name" className="form-input" />
             </div>
           </div>
 
           <div className="input-group">
-            <label>Vorname</label>
-            <input type="text" name="first_name" />
-          </div>
-          <div className="input-group">
-            <label>Nachname</label>
-            <input type="text" name="last_name" />
+            <label className="form-label">Firma/Organisation</label>
+            <input type="text" name="company" className="form-input" />
           </div>
 
-          <div className="input-group">
-            <label>Firma/Organisation</label>
-            <input type="text" name="company" />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="input-group">
+              <label className="form-label">Strasse und Hausnr.</label>
+              <input type="text" name="street" className="form-input" />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="input-group">
+                <label className="form-label">PLZ</label>
+                <input type="text" name="zip_code" className="form-input" />
+              </div>
+              <div className="input-group">
+                <label className="form-label">Ort</label>
+                <input type="text" name="city" className="form-input" />
+              </div>
+            </div>
           </div>
 
-          <div className="input-group">
-            <label>Strasse und Hausnr.</label>
-            <input type="text" name="street" />
+          <div className="grid grid-cols-2 gap-4">
+            <div className="input-group">
+              <label className="form-label">E-Mail-Adresse</label>
+              <input type="email" name="email" className="form-input" />
+            </div>
+            <div className="input-group">
+              <label className="form-label">Telefon</label>
+              <input type="tel" name="phone" className="form-input" />
+            </div>
           </div>
 
-          <div className="input-group">
-            <label>PLZ</label>
-            <input type="text" name="zip_code" />
-          </div>
-          <div className="input-group">
-            <label>Ort</label>
-            <input type="text" name="city" />
-          </div>
-
-          <div className="input-group">
-            <label>E-Mail-Adresse</label>
-            <input type="email" name="email" />
-          </div>
-          <div className="input-group">
-            <label>Telefon</label>
-            <input type="tel" name="phone" />
-          </div>
-
-          <div className="input-group checkbox-group">
-            <input type="checkbox" id="data_consent" />
+          <div className="input-group checkbox-group mb-6">
+            <input type="checkbox" id="data_consent" className="form-checkbox" />
             <label htmlFor="data_consent" className="checkbox-label">
               Ich stimme der Datenbearbeitung zu.
             </label>

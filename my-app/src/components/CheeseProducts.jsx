@@ -9,7 +9,7 @@ const cheeseProducts = [
     { src: "/images/image6.jpg", name: "Bauernkäse", price: "CHF 2.90" }
 ];
 
-function CheeseProducts() {
+function CheeseProducts({ addToCart }) {
     return (
         <div className="gallery-grid">
             {cheeseProducts.map((cheese, index) => (
@@ -17,7 +17,14 @@ function CheeseProducts() {
                     <img src={cheese.src} alt={cheese.name} className="gallery-image" />
                     <div className="product-info">
                         <h4 className="product-name">{cheese.name}</h4>
-                        <p className="product-price">{cheese.price}</p>
+                        <p className="product-price" style={{ color: '#1C729C' }}>{cheese.price}</p>
+                        <button 
+                            className="add-to-cart-button"
+                            style={{ backgroundColor: '#1C729C', color: 'white' }}
+                            onClick={() => addToCart(cheese)}
+                        >
+                            In den Warenkorb
+                        </button>
                     </div>
                 </div>
             ))}
