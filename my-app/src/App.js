@@ -5,6 +5,7 @@ import Productlist from './components/products';
 import CheeseProducts from './components/CheeseProducts';
 import ContactForm from './components/ContactForm';
 import Team from './components/Team';
+import Suppliers from './components/suppliers';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
@@ -29,6 +30,7 @@ function App() {
           </li>
           <li><Link to="/categories" className="navigation-link text-white">Kategorien</Link></li>
           <li><Link to="/products" className="navigation-link text-white">Produkte</Link></li>
+          <li><Link to="/suppliers" className="navigation-link text-white">Lieferanten</Link></li>
           <li><Link to="/cheese" className="navigation-link text-white">Käseprodukte</Link></li>
           <li><Link to="/team" className="navigation-link text-white">Team</Link></li>
           <li><Link to="/contact" className="navigation-link text-white">Kontaktformular</Link></li>
@@ -71,6 +73,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/products" element={<Productlist />} />
+        <Route path="/suppliers" element={<Suppliers />} />
         <Route path="/cheese" element={<CheeseProducts addToCart={addToCart} />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/team" element={<Team />} />
@@ -301,6 +304,7 @@ function CategoryList() {
           alert('Failed to update category');
         }
       });
+      
   };
 
   const handleDelete = (categoryId) => {
@@ -362,6 +366,7 @@ function CategoryList() {
                       return rest;
                     });
                   });
+                  window.location.reload(); // Refresh the page
               }}
             >
               Save

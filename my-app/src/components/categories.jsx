@@ -1,3 +1,5 @@
+categories.jsx
+
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './index.css';
@@ -184,7 +186,9 @@ function CategoryList() {
                       const { new: _, ...rest } = prev;
                       return rest;
                     });
+                    window.location.reload(); // Refresh the page
                   });
+                  
               }}
             >
               Save
