@@ -1,17 +1,17 @@
 # Projektarbeit-React
 
-This project, titled "Projektarbeit-React", was developed for academic purposes and showcases a comprehensive web application built with React, Docker, and a backend API. The application includes a wide range of features:
+This project, titled **"Projektarbeit-React"**, was developed for academic purposes and showcases a comprehensive web application built with React, Docker, and a backend API. The application includes a wide range of features:
 
-- Category Management: Add, edit, and delete categories.
-- Product Listing: List, search, add, edit, and delete products.
-- Supplier Management: Manage supplier information.
-- Cart: Add products, adjust quantities, calculate total price.
-- Cheese Products Gallery: A special gallery featuring cheese products with an "Add to Cart" functionality.
-- Contact Form: A form with a time limit for submitting inquiries or comments.
-- Team Page: Introduction to the team behind the application.
-- Contact Page: Displays the location using Google Maps.
-- About Me: Personal information about the founder of the application.
-- Login Form: Modal login form for user authentication.
+- **Category Management**: Add, edit, and delete categories.
+- **Product Listing**: List, search, add, edit, and delete products.
+- **Supplier Management**: Manage supplier information.
+- **Shopping Cart**: Add products, adjust quantities, and calculate the total price.
+- **Cheese Products Gallery**: A special gallery featuring cheese products with an "Add to Cart" functionality.
+- **Contact Form**: A form with a time limit for submitting inquiries or comments.
+- **Team Page**: Introduction to the team behind the application.
+- **Contact Page**: Displays the location using Google Maps.
+- **About Me**: Personal information about the founder of the application.
+- **Login Form**: Modal login form for user authentication.
 
 ## Fork to Your GitHub Account
 
