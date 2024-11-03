@@ -70,7 +70,6 @@ The Käserei Hasan web application offers a variety of interactive features, inc
 ## Features
 
 ### 1. Navigation
-This project, titled "Projektarbeit-React", was developed for academic purposes and showcases a comprehensive web application built with React, Docker, and a backend API. The application includes a variety of features:
 
 - Home: Welcome page and overview.
 - Categories: Manage and view product categories.
