@@ -3,9 +3,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Allgemeine Button-Klassen */
+.btn {
+  @apply rounded px-4 py-2 transition-colors duration-300 font-semibold;
+}
+
+/* Einheitliche Stile für Buttons in Kategorien und Produkten */
+.category-edit-button, .category-delete-button,
+.product-edit-button, .product-delete-button {
+  @apply text-white font-semibold text-center rounded;
+  padding: 8px 16px; /* Einheitliche Polsterung für alle Buttons */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px; /* Einheitliche Schriftgröße */
+}
+
+/* Spezifische Farbe für Edit-Button */
+.category-edit-button, .product-edit-button {
+  background-color: #D4A017; /* Gelbe Farbe für Edit */
+}
+
+.category-edit-button:hover, .product-edit-button:hover {
+  background-color: #b88d0d; /* Dunklere Gelbe Farbe beim Hover */
+}
+
+/* Spezifische Farbe für Delete-Button */
+.category-delete-button, .product-delete-button {
+  background-color: #FF6347; /* Rote Farbe für Delete */
+}
+
+.category-delete-button:hover, .product-delete-button:hover {
+  background-color: #d9543b; /* Dunklere Rote Farbe beim Hover */
+}
+
+/* Primäre Button-Stil (z.B. für Hinzufügen-Buttons) */
+.btn-primary {
+  @apply bg-blue-500 text-white;
+}
+
+.btn-primary:hover {
+  background-color: #3b82f6; /* Hover-Farbe für primäre Buttons */
+}
+
 /* Navigationsleiste */
 .navigation {
-  @apply bg-[#1C729C] p-4 text-white flex items-center justify-between; /* Navigationsfarbe angepasst */
+  @apply bg-[#1C729C] p-4 text-white flex items-center justify-between;
 }
 
 .navigation-list {
@@ -17,22 +61,22 @@
 }
 
 .navigation-link i {
-  margin-right: 8px; /* Abstand zwischen Symbol und Text */
+  margin-right: 8px;
 }
 
 /* Gemeinsames Styling für Anmelde- und Warenkorb-Button */
 .nav-button {
   @apply flex items-center bg-[#1C729C] text-white rounded px-3 py-2 transition-colors duration-300;
-  font-size: 16px; /* Einheitliche Schriftgröße */
+  font-size: 16px;
   cursor: pointer;
 }
 
 .nav-button i {
-  margin-right: 8px; /* Abstand zwischen Symbol und Text */
+  margin-right: 8px;
 }
 
 .nav-button:hover {
-  background-color: #38a169; /* Hover-Farbe */
+  background-color: #145a6d;
 }
 
 /* Käse-Logo */
@@ -55,32 +99,38 @@
 /* Button-Styling für Anmelden */
 .login-button {
   @apply bg-[#1C729C] text-white rounded px-3 py-2 transition-colors duration-300;
-  @apply flex items-center space-x-2; /* Für Symbol und Text */
+  @apply flex items-center space-x-2;
 }
 
 .login-button i {
-  margin-right: 4px; /* Platz für das Icon */
+  margin-right: 4px;
 }
 
 /* Timer-Abstand und Formatierung */
 .timer-space {
-  margin-left: 20px; /* Erhöhter Abstand für den Timer */
-  font-weight: bold; /* Fett geschrieben */
-  color: black; /* Schwarzer Text */
+  margin-left: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.timer-group {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Abstand zwischen Label und Timer */
 }
 
 /* Galerie-Stile */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Feste 3 Spalten */
-  gap: 20px; /* Abstand zwischen den Karten */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
   justify-items: center;
   margin-top: 20px;
 }
 
 .product-item {
-  width: 100%; /* Füllt den verfügbaren Platz */
-  max-width: 250px; /* Maximale Breite */
+  width: 100%;
+  max-width: 250px;
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
@@ -94,7 +144,7 @@
 }
 
 .gallery-image {
-  width: 200px; /* Größeres Bild */
+  width: 200px;
   height: 200px;
   border-radius: 8px;
   object-fit: cover;
@@ -111,13 +161,17 @@
 }
 
 .product-price {
-  color: #1C729C; /* Preisfarbe angepasst */
+  color: #1C729C;
   font-size: 16px;
 }
 
 /* Button für Warenkorb */
 .add-to-cart-button {
-  @apply rounded px-4 py-2 mt-2;
+  @apply rounded px-4 py-2 mt-2 bg-[#1C729C] text-white;
+}
+
+.add-to-cart-button:hover {
+  background-color: #145a6d;
 }
 
 /* Produktintro-Stil */
@@ -165,12 +219,12 @@
 }
 
 .submit-button {
-  @apply bg-[#1C729C] text-white rounded px-4 py-2 mt-4; /* Buttonfarbe angepasst */
+  @apply bg-[#1C729C] text-white rounded px-4 py-2 mt-4;
   width: 100%;
 }
 
 .submit-button:hover {
-  background-color: #45a049; /* Hover-Effekt */
+  background-color: #145a6d;
 }
 
 .close-button {
@@ -179,7 +233,7 @@
 }
 
 .close-button:hover {
-  background-color: #d32f2f; /* Hover-Effekt */
+  background-color: #d32f2f;
 }
 
 /* Kontaktformular Stile */
@@ -192,12 +246,12 @@
 }
 
 .toggle-button {
-  @apply bg-[#1C729C] text-white py-2 px-4 rounded transition duration-300; /* Buttonfarbe angepasst */
+  @apply bg-[#1C729C] text-white py-2 px-4 rounded transition duration-300;
   margin-bottom: 16px;
 }
 
 .toggle-button:hover {
-  background-color: #38a169; /* Hover-Effekt */
+  background-color: #145a6d;
 }
 
 .form-label {
@@ -233,7 +287,7 @@
 
 .checkbox-group {
   @apply flex items-start space-x-2 mb-4;
-  margin-bottom: 1rem; /* Abstand zwischen Checkboxen */
+  margin-bottom: 1rem;
 }
 
 .form-checkbox {
@@ -250,10 +304,15 @@
 }
 
 .submit-button {
-  @apply w-full bg-[#1C729C] text-white py-2 px-4 rounded; /* Buttonfarbe angepasst */
+  @apply w-full bg-[#1C729C] text-white py-2 px-4 rounded;
   transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-  background-color: #2f855a; /* Hover-Effekt */
+  background-color: #145a6d;
+}
+
+/* Gemeinsame Stile für alle Hauptüberschriften */
+.common-heading {
+  @apply text-4xl font-extrabold text-yellow-600 text-center mb-4;
 }

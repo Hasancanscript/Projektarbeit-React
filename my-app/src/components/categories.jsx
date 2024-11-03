@@ -1,5 +1,3 @@
-categories.jsx
-
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import './index.css';
@@ -168,7 +166,7 @@ function CategoryList() {
           />
           <div className="flex space-x-2">
             <button
-              className="bg-green-500 text-white px-4 py-2 rounded"
+              className="btn btn-secondary px-4 py-2 rounded"
               onClick={() => {
                 const newCategory = editedCategory['new'];
                 fetch(`${api}/categories`, {
@@ -194,7 +192,7 @@ function CategoryList() {
               Save
             </button>
             <button 
-              className="bg-red-500 text-white px-4 py-2 rounded"
+              className="btn btn-secondary px-4 py-2 rounded"
               onClick={() => setEditableCategoryId(null)}
             >
               Cancel
@@ -246,13 +244,13 @@ function CategoryList() {
                 {editableCategoryId === category.CategoryID ? (
                   <div className="flex space-x-2">
                     <button 
-                      className="bg-green-500 text-white px-4 py-2 rounded"
+                      className="btn btn-secondary px-4 py-2 rounded"
                       onClick={() => handleSave(category.CategoryID)}
                     >
                       Save
                     </button>
                     <button 
-                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      className="btn btn-secondary px-4 py-2 rounded"
                       onClick={() => setEditableCategoryId(null)}
                     >
                       Cancel
@@ -261,13 +259,13 @@ function CategoryList() {
                 ) : (
                   <div className="flex space-x-2">
                     <button 
-                      className="bg-yellow-500 text-white px-4 py-2 rounded"
+                      className="btn btn-secondary px-4 py-2 rounded"
                       onClick={() => setEditableCategoryId(category.CategoryID)}
                     >
                       Edit
                     </button>
                     <button 
-                      className="bg-red-500 text-white px-4 py-2 rounded"
+                      className="btn btn-secondary px-4 py-2 rounded"
                       onClick={() => handleDelete(category.CategoryID)}
                     >
                       Delete

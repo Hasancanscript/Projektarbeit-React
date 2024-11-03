@@ -4,8 +4,9 @@ const api = process.env.REACT_APP_API_URL || 'http://localhost:3000';
 
 function Productlist() {
   const [products, setProducts] = useState([]);
-  const [editableProductId, setEditableProductId] = useState(null); // Track which product is being edited
-  const [editedProduct, setEditedProduct] = useState({}); // Track changes to the edited product
+  const [searchTerm, setSearchTerm] = useState('');
+  const [editableProductId, setEditableProductId] = useState(null);
+  const [editedProduct, setEditedProduct] = useState({});
 
   useEffect(() => {
     fetch(`${api}/products`)
@@ -17,12 +18,10 @@ function Productlist() {
       .catch(error => console.error('Error fetching products:', error));
   }, []);
 
-  // Function to sort products by ProductName
   const sortProducts = (products) => {
     return products.sort((a, b) => a.ProductName.localeCompare(b.ProductName));
   };
 
-  // Handle input change for editing product
   const handleInputChange = (productId, field, value) => {
     setEditedProduct(prev => ({
       ...prev,
@@ -33,7 +32,6 @@ function Productlist() {
     }));
   };
 
-  // Handle patch request for product update
   const handleSave = (productId) => {
     const updatedProduct = editedProduct[productId];
     fetch(`${api}/products/${productId}`, {
@@ -48,14 +46,13 @@ function Productlist() {
           setProducts(products.map(product =>
             product.ProductID === productId ? { ...product, ...updatedProduct } : product
           ));
-          setEditableProductId(null); // Exit edit mode
+          setEditableProductId(null);
         } else {
           alert('Failed to update product');
         }
       });
   };
 
-  // Handle delete request
   const handleDelete = (productId) => {
     fetch(`${api}/products/${productId}`, {
       method: 'DELETE',
@@ -69,19 +66,34 @@ function Productlist() {
       });
   };
 
+  // Filter the products based on the search term
+  const filteredProducts = products.filter(product =>
+    product.ProductName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Produktliste</h1>
       <p className="product-intro">
-        Entdecken Sie unsere sorgfältig ausgewählte Produktpalette, die höchste Qualität und besten Genuss garantiert.
+        Entdecken Sie unsere sorgfältig ausgewählte Produktpalette, die höchste Qualität und besten Genuss garantiert bei Käserei Hasan
       </p>
 
-      <button 
-        className="btn btn-primary px-4 py-2 mb-4"
-        onClick={() => setEditableProductId('new')}
-      >
-        Neues Produkt hinzufügen
-      </button>
+      {/* Suchfeld */}
+      <div className="mb-4">
+        <input
+          type="text"
+          className="border p-2 w-64 mb-2 block" // Sicherstellen, dass das Suchfeld ein Blockelement ist
+          placeholder="Suche nach Produkt..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <button 
+          className="btn btn-primary px-4 py-2 w-64 block" // Button ebenfalls als Blockelement unter dem Suchfeld
+          onClick={() => setEditableProductId('new')}
+        >
+          Neues Produkt hinzufügen
+        </button>
+      </div>
 
       {editableProductId === 'new' && (
         <div className="mb-4 p-4 border rounded">
@@ -108,7 +120,7 @@ function Productlist() {
           />
           <div className="flex space-x-2">
             <button
-              className="btn btn-secondary px-4 py-2 mb-4"
+              className="btn btn-secondary px-4 py-2 rounded"
               onClick={() => {
                 const newProduct = editedProduct['new'];
                 fetch(`${api}/products`, {
@@ -133,7 +145,7 @@ function Productlist() {
               Save
             </button>
             <button 
-              className="btn btn-secondary px-4 py-2 mb-4 mx-1"
+              className="btn btn-secondary px-4 py-2 rounded"
               onClick={() => setEditableProductId(null)}
             >
               Cancel
@@ -152,7 +164,7 @@ function Productlist() {
           </tr>
         </thead>
         <tbody>
-          {products.map(product => (
+          {filteredProducts.map(product => (
             <tr key={product.ProductID} className="hover:bg-gray-100">
               <td className="py-2 px-4 border-b">
                 {editableProductId === product.ProductID ? (
@@ -200,13 +212,13 @@ function Productlist() {
                 {editableProductId === product.ProductID ? (
                   <div className="flex space-x-2">
                     <button 
-                      className="btn btn-secondary px-4 py-2 mb-4 mx-1"
+                      className="btn btn-secondary px-4 py-2 rounded"
                       onClick={() => handleSave(product.ProductID)}
                     >
                       Save
                     </button>
                     <button 
-                      className="btn btn-secondary px-4 py-2 mb-4 mx-1"
+                      className="btn btn-secondary px-4 py-2 rounded"
                       onClick={() => setEditableProductId(null)}
                     >
                       Cancel
@@ -215,13 +227,13 @@ function Productlist() {
                 ) : (
                   <div className="flex space-x-2">
                     <button 
-                      className="btn btn-success px-4 py-2 mb-4 mx-1"
+                      className="btn btn-secondary px-4 py-2 rounded bg-yellow-500 hover:bg-yellow-600 border-none"
                       onClick={() => setEditableProductId(product.ProductID)}
                     >
                       Edit
                     </button>
                     <button 
-                      className="btn btn-danger px-4 py-2 mb-4 mx-1"
+                      className="btn btn-secondary px-4 py-2 rounded bg-red-500 hover:bg-red-600 border-none"
                       onClick={() => handleDelete(product.ProductID)}
                     >
                       Delete

@@ -64,7 +64,7 @@ function App() {
               </label>
               <button type="submit" className="submit-button">Anmelden</button>
             </form>
-            <button onClick={handleCloseModal} className="close-button">Schließen</button>
+            <button onClick={handleCloseModal} className="close-button">Schliessen</button>
           </div>
         </div>
       )}
@@ -154,7 +154,7 @@ function Map() {
         <p>
           <a href="https://www.google.ch/maps/place/Feusi+Bildungszentrum+AG/@46.9664481,7.4641198,312m/data=!3m1!1e3!4m6!3m5!1s0x478e39fe7e4c241b:0x85161c9c1c672184!8m2!3d46.966543!4d7.465476!16s%2Fg%2F11f8p332v4?hl=de&entry=ttu&g_ep=EgoyMDI0MTAyNy4wIKXMDSoASAFQAw%3D%3D"
             target="_blank" rel="noopener noreferrer">
-            Größere Karte anzeigen
+            Grössere Karte anzeigen
           </a>
         </p>
       </div>

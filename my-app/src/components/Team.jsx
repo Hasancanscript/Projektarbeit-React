@@ -25,7 +25,7 @@ function Team() {
 
         <h3 className="text-xl font-semibold mb-2 text-gray-700">Was wir machen:</h3>
         <p className="mb-6 text-gray-600 leading-relaxed">
-          Wir stellen eine Vielzahl von Käsesorten her, darunter würzige Raclette, cremigen Camembert und aromatischen Paprika-Chili-Käse. Jeder Käse wird mit größter Sorgfalt und Liebe zum Detail hergestellt, um die besten Aromen und Texturen zu garantieren.
+          Wir stellen eine Vielzahl von Käsesorten her, darunter würzige Raclette, cremigen Camembert und aromatischen Paprika-Chili-Käse. Jeder Käse wird mit grösster Sorgfalt und Liebe zum Detail hergestellt, um die besten Aromen und Texturen zu garantieren.
         </p>
 
         <h3 className="text-xl font-semibold mb-2 text-gray-700">Wo wir sind:</h3>
