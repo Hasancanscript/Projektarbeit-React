@@ -1,32 +1,3 @@
-## Instructions for Downloading and Running **Projektarbeit-React**
-
-### Prerequisites
-- Node.js and npm should be installed on your system.
-- Docker and Docker Compose should also be installed.
-
-### Steps to Download and Run
-
-1. Clone the Repository  
-   Open a terminal and run the following commands:
-   ```bash
-   git clone https://github.com/Hasancanscript/Projektarbeit-React.git
-   cd Projektarbeit-React
-
-npm install
-
-sudo docker-compose up
-
-cd my-app
-npm start
-
-docker compose down
-rm -rf data
-docker compose up -d
-
-docker compose down
-rm -rf data
-docker compose up -d
-
 ## W3Schools Database in Docker
 
 Forked from https://github.com/AndrejPHP/w3schools-database for academic purposes.
@@ -86,6 +57,7 @@ When the docker container starts, it creates database named __w3schools__ with t
 and inserts the respective data. 
 
 ## Features
+
 # Käserei Hasan - Web-Application
 
 ## Overview
@@ -94,6 +66,8 @@ The Käserei Hasan web application offers a variety of interactive features, inc
 ## Features
 
 ### 1. Navigation
+This project, titled "Projektarbeit-React", was developed for academic purposes and showcases a comprehensive web application built with React, Docker, and a backend API. The application includes a variety of features:
+
 - Home: Welcome page and overview.
 - Categories: Manage and view product categories.
 - Products: List of products with search and edit functionality.
@@ -105,6 +79,24 @@ The Käserei Hasan web application offers a variety of interactive features, inc
 - About Me: Personal information about the founder.
 - Login: Modal login form.
 - Cart: Overview of added products and total price calculation.
+
+## Prerequisites
+
+Before you begin, make sure the following software is installed on your system:
+
+1. Visual Studio Code: Download and install [Visual Studio Code](https://code.visualstudio.com/).
+2. Node.js: Download and install [Node.js](https://nodejs.org/).
+3. Docker: Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop).
+4. GitHub Account: Register at [GitHub](https://github.com/) if you don’t already have an account.
+
+## Steps to Download and Run
+
+1. Clone the Repository  
+   Open a terminal and run the following commands:
+   ```bash
+   git clone https://github.com/Hasancanscript/Projektarbeit-React.git
+   cd Projektarbeit-React
+
 
 ### 2. Category Management
 - Create: Add new categories.
