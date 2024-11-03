@@ -58,10 +58,10 @@ When the docker container starts, it creates database named __w3schools__ with t
 and inserts the respective data. 
 
 ## Features
-# Käserei Hasan - Web-Anwendung
+# Käserei Hasan - Web-Application
 
-## Übersicht
-Käserei Hasan bietet eine interaktive Web-Anwendung, die verschiedene Features zur Verwaltung von Kategorien, Produkten, Lieferanten und einem Warenkorb bietet.
+## Overview
+The Käserei Hasan web application offers a variety of interactive features, including the management of categories, products, suppliers, and a shopping cart. Additionally, it includes special pages like a cheese products gallery, a contact form with a time limit, a team page, and a location display with Google Maps.
 
 ## Features
 
