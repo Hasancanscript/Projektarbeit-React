@@ -1,3 +1,7 @@
+# Projektarbeit-React
+
+This project, titled "Projektarbeit-React", was developed for academic purposes. It showcases a comprehensive web application built with React, Docker, and a backend API, featuring category management, product listing, supplier management, and a shopping cart, along with interactive components like a cheese products gallery and a contact form.
+
 ## W3Schools Database in Docker
 
 Forked from https://github.com/AndrejPHP/w3schools-database for academic purposes.
@@ -80,23 +84,15 @@ This project, titled "Projektarbeit-React", was developed for academic purposes 
 - Login: Modal login form.
 - Cart: Overview of added products and total price calculation.
 
-## Prerequisites
-
-Before you begin, make sure the following software is installed on your system:
-
-1. Visual Studio Code: Download and install [Visual Studio Code](https://code.visualstudio.com/).
-2. Node.js: Download and install [Node.js](https://nodejs.org/).
-3. Docker: Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop).
-4. GitHub Account: Register at [GitHub](https://github.com/) if you don’t already have an account.
-
 ## Steps to Download and Run
+
+To experience the full functionality of the Käserei Hasan web application, follow these steps to clone the repository and set up the environment on your local machine.
 
 1. Clone the Repository  
    Open a terminal and run the following commands:
    ```bash
    git clone https://github.com/Hasancanscript/Projektarbeit-React.git
    cd Projektarbeit-React
-
 
 ### 2. Category Management
 - Create: Add new categories.
@@ -117,7 +113,6 @@ Before you begin, make sure the following software is installed on your system:
 ### 5. Cart
 - Add Products: Users can add products to the cart.
 - Total Price: Calculate the total price based on cart items.
-- Empty Cart: Remove all products from the cart.
 
 ### 6. Contact Form
 - Timed Form: Users have 10 minutes to complete the form
@@ -166,14 +161,11 @@ Before you begin, make sure the following software is installed on your system:
   - Created and finalized documentation.
   - Prepared the app for presentation and GitHub release.
 
-## Installation & Start
+## Prerequisites
 
-### Prerequisites
-- Node.js and npm should be installed.
-- Docker and Docker Compose should be installed.
+Before you begin, make sure the following software is installed on your system:
 
-### Steps
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   cd w3schools-database
+1. Visual Studio Code: Download and install [Visual Studio Code](https://code.visualstudio.com/).
+2. Node.js: Download and install [Node.js](https://nodejs.org/).
+3. Docker: Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop).
+4. GitHub Account: Register at [GitHub](https://github.com/) if you don’t already have an account.
