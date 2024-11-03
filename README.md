@@ -58,13 +58,101 @@ When the docker container starts, it creates database named __w3schools__ with t
 and inserts the respective data. 
 
 ## Features
-1. Get and list all categories
-2. Create a new category
-3. Update an existing category
-4. Delete a category
-5. Give an error message to the user when trying to delete a category that can't be deleted
+# Käserei Hasan - Web-Anwendung
+
+## Übersicht
+Käserei Hasan bietet eine interaktive Web-Anwendung, die verschiedene Features zur Verwaltung von Kategorien, Produkten, Lieferanten und einem Warenkorb bietet.
+
+## Features
+
+### 1. Navigation
+- Home: Welcome page and overview.
+- Categories: Manage and view product categories.
+- Products: List of products with search and edit functionality.
+- Suppliers: Manage suppliers.
+- Cheese Products: Special gallery for cheese products.
+- Team: Information about the team.
+- Contact Form: Contact form with a time limit.
+- Contact: Location display using Google Maps.
+- About Me: Personal information about the founder.
+- Login: Modal login form.
+- Cart: Overview of added products and total price calculation.
+
+### 2. Category Management
+- Create: Add new categories.
+- Edit: Update existing categories.
+- Delete: Remove categories.
+
+### 3. Product Management
+- Search: Filter products by name.
+- Create: Add new products.
+- Edit: Update products.
+- Delete: Remove products.
+
+### 4. Supplier Management
+- Create: Add new suppliers.
+- Edit: Update supplier information.
+- Delete: Remove suppliers.
+
+### 5. Cart
+- Add Products: Users can add products to the cart.
+- Total Price: Calculate the total price based on cart items.
+- Empty Cart: Remove all products from the cart.
+
+### 6. Contact Form
+- Timed Form: Users have 10 minutes to complete the form
+- Validation: Users are notified when time runs out.
+- Salutation and Contact Information: Users can input personal data and inquiries.
+
+### 7. Cheese Products Gallery
+- Display of various cheeses with prices and an "Add to Cart" functionality.
+
+## Tech Stack
+- Frontend: React.js
+- Styling: Tailwind CSS
+- Backend API: Lokaler JSON-Server oder anderer API-Endpunkt (konfigurierbar via `.env`).
+
+## Installation & Start
+1. Clone the repository: `git clone <repository-url>`
+2. Install dependencies: `npm install`
+3. Set environment variables: create a `.env` file
+4. Start the app: `npm start`
 
 ## Journal
-### 14.09.2024
-The project setup was quite difficult, as I am missing some linux and docker experience.
-After some try and errors and support from ChatGPT I made it finally work
+
+### Project Start
+- Date: 14.09.2024
+- Activities*
+  - Planned project structure.
+  - Created repository on GitHub.
+  - Set up the basic structure of the React app.
+
+### Development of Core Features
+- Date: 15.09.2024 - 30.09.2024
+- Activities:
+  - Implemented category management (add, edit, delete).
+  - Developed product list with search and filter functionalities.
+  - Created supplier management.
+  - Built the cheese products gallery.
+
+### Enhancements and Styling
+- Date: 01.10.2024 - 07.10.2024
+- Activities:
+  - Applied styling using Tailwind CSS.
+  - Implemented the shopping cart with quantity adjustment and price calculation.
+  - Added animations and hover effects.
+
+### Contact Form and Additional Pages
+- Date: 08.10.2024 - 15.10.2024
+- Activities:
+  - Developed the contact form with a time limit.
+  - Created the Team and About Me pages.
+  - Integrated Google Maps on the contact page.
+
+### Final Tasks
+- Date: 16.10.2024 - 20.10.2024
+- Activities:
+  - Conducted final tests and bug fixes.
+  - Refined the user interface.
+  - Created and finalized documentation.
+  - Prepared the app for presentation and GitHub release.
