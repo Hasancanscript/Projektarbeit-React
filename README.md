@@ -111,7 +111,7 @@ The Käserei Hasan web application offers a variety of interactive features, inc
 
 ### Project Start
 - Date: 14.09.2024
-- Activities*
+- Activities:
   - Planned project structure.
   - Created repository on GitHub.
   - Set up the basic structure of the React app.
