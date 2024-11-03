@@ -139,7 +139,7 @@ The Käserei Hasan web application offers a variety of interactive features, inc
   - Integrated Google Maps on the contact page.
 
 ### Final Tasks
-- Date: 16.10.2024 - 30.10.2024
+- Date: 16.10.2024 - 03.11.2024
 - Activities:
   - Conducted final tests and bug fixes.
   - Refined the user interface.
