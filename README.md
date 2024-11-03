@@ -1,30 +1,3 @@
-# Projektarbeit-React
-
-This project, titled **"Projektarbeit-React"**, was developed for academic purposes and showcases a comprehensive web application built with React, Docker, and a backend API. The application includes a wide range of features:
-
-- **Category Management**: Add, edit, and delete categories.
-- **Product Listing**: List, search, add, edit, and delete products.
-- **Supplier Management**: Manage supplier information.
-- **Shopping Cart**: Add products, adjust quantities, and calculate the total price.
-- **Cheese Products Gallery**: A special gallery featuring cheese products with an "Add to Cart" functionality.
-- **Contact Form**: A form with a time limit for submitting inquiries or comments.
-- **Team Page**: Introduction to the team behind the application.
-- **Contact Page**: Displays the location using Google Maps.
-- **About Me**: Personal information about the founder of the application.
-- **Login Form**: Modal login form for user authentication.
-
-## Fork to Your GitHub Account
-
-Go to GitHub, create a new account or log in.  
-Fork my repo: [https://github.com/YOURUSERNAME/projektarbeit-react](https://github.com/YOURUSERNAME/projektarbeit-react)
-
-Now you have a repository **projektarbeit-react** in your GitHub account. Clone it with:
-
-```bash
-git clone https://github.com/YOURUSERNAME/projektarbeit-react
-cd projektarbeit-react
-code .
-
 
 ## W3Schools Database in Docker
 
