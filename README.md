@@ -146,7 +146,7 @@ The Käserei Hasan web application offers a variety of interactive features, inc
   - Created and finalized documentation.
   - Prepared the app for presentation and GitHub release.
 
-  ## Installation & Start
+## Installation & Start
 
 ### Prerequisites
 - Node.js and npm should be installed.
