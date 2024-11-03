@@ -107,17 +107,6 @@ The Käserei Hasan web application offers a variety of interactive features, inc
 ### 7. Cheese Products Gallery
 - Display of various cheeses with prices and an "Add to Cart" functionality.
 
-## Tech Stack
-- Frontend: React.js
-- Styling: Tailwind CSS
-- Backend API: Lokaler JSON-Server oder anderer API-Endpunkt (konfigurierbar via `.env`).
-
-## Installation & Start
-1. Clone the repository: `git clone <repository-url>`
-2. Install dependencies: `npm install`
-3. Set environment variables: create a `.env` file
-4. Start the app: `npm start`
-
 ## Journal
 
 ### Project Start
@@ -156,3 +145,15 @@ The Käserei Hasan web application offers a variety of interactive features, inc
   - Refined the user interface.
   - Created and finalized documentation.
   - Prepared the app for presentation and GitHub release.
+
+  ## Installation & Start
+
+### Prerequisites
+- Node.js and npm should be installed.
+- Docker and Docker Compose should be installed.
+
+### Steps
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd w3schools-database
