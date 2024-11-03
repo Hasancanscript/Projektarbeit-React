@@ -25,6 +25,7 @@ git clone https://github.com/YOURUSERNAME/projektarbeit-react
 cd projektarbeit-react
 code .
 
+
 ## W3Schools Database in Docker
 
 Forked from https://github.com/AndrejPHP/w3schools-database for academic purposes.
