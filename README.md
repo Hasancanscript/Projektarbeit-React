@@ -1,3 +1,31 @@
+## Instructions for Downloading and Running **Projektarbeit-React**
+
+### Prerequisites
+- Node.js and npm should be installed on your system.
+- Docker and Docker Compose should also be installed.
+
+### Steps to Download and Run
+
+1. Clone the Repository  
+   Open a terminal and run the following commands:
+   ```bash
+   git clone https://github.com/Hasancanscript/Projektarbeit-React.git
+   cd Projektarbeit-React
+
+npm install
+
+sudo docker-compose up
+
+cd my-app
+npm start
+
+docker compose down
+rm -rf data
+docker compose up -d
+
+docker compose down
+rm -rf data
+docker compose up -d
 
 ## W3Schools Database in Docker
 
