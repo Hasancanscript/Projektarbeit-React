@@ -5,7 +5,7 @@ This project, titled "Projektarbeit-React", was developed for academic purposes 
 - Category Management: Add, edit, and delete categories.
 - Product Listing: List, search, add, edit, and delete products.
 - Supplier Management: Manage supplier information.
-- Shopping Cart: Add products, adjust quantities, calculate total price, and empty the cart.
+- Cart: Add products, adjust quantities, calculate total price.
 - Cheese Products Gallery: A special gallery featuring cheese products with an "Add to Cart" functionality.
 - Contact Form: A form with a time limit for submitting inquiries or comments.
 - Team Page: Introduction to the team behind the application.
